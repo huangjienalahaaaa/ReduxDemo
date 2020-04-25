@@ -19,19 +19,19 @@ class TodoList extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={{ margin: '10px' }}>
                 <div>
                     {/* 3.使用Input标签。在Input组件里，我们设置了style，注意设置这个时不带单引号或者双引号的。 */}
-                    <Input placeholder='jspang' style={{ width: '250px' }} />
+                    <Input placeholder='write someting' style={{ width: '250px', marginRight: '10px' }} />
                     {/* 4.Ant Design也提供了丰富好看的按钮组件，直接使用最简单的Primary按钮。使用按钮组件前也需要先引入,为了让组件更好看，还加入了一些Margin样式，代码如下: */}
                     <Button type="primary">增加</Button>
                 </div>
                 {/* 6.使用List标签 */}
                 <div style={{ margin: '10px', width: '300px' }}>
                     <List
-                        bordered
-                        dataSource={data}
-                        renderItem={item => (<List.Item>{item}</List.Item>)}
+                        bordered //表示需要外边框
+                        dataSource={data} //数据绑定
+                        renderItem={item => (<List.Item>{item}</List.Item>)} //渲染项
                     />
                 </div>
             </div>
