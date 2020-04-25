@@ -37,3 +37,57 @@
 
 
 * <font color="red">React Components</font>就相当于大官人，然后我们去作“大宝剑”，我们先见到的是<font color="red">Action Creators</font>“妈妈桑”,我们说我要找小红，我是熟客了。"妈妈桑"就回到了<font color="red">Store</font>，然后让<font color="red">Reducer</font>看看"小红“忙不忙（现在的状态），如果不忙就让她过来配大官人。
+
+
+
+# v4.0 基础-<font color="red">Ant Design</font>介绍和环境初始化：
+
+> Ant Design是一套面向企业级开发的UI框架，视觉和动效作的很好。阿里开源的一套UI框架，它不只支持React，还有ng和Vue的版本，我认为不论你的前端框架用什么，Ant Design都是一个不错的选择。习惯性把AntDesign简称为antd。 目前有将近5万Star，算是React UI框架中的老大了。
+
+***初始化项目：***
+这里我默认你已经看过我的“React16免费视频教程”了，所以我认为你这个过程已经了解了知识点，我只是带着你作一遍。
+1. 如果你没有安装脚手架工具，你需要安装一下：
+> npm install -g create-react-app
+
+2. 直接用脚手架工具创建项目
+```javascript
+ D:  //进入D盘
+ mkdir ReduxDemo   //创建ReduxDemo文件夹
+ cd ReduxDemo      //进入文件夹
+ create-react-app demo01  //用脚手架创建React项目
+ cd demo01   //等项目创建完成后，进入项目目录
+ npm  start  //预览项目
+```
+
+***快速生成基本代码结构:***
+编写<font color="red">index.js</font>文件,这个文件就是一个基础文件，基本代码也都是一样的。
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom'
+import TodoList from './TodoList'
+
+ReactDOM.render(<TodoList/>,document.getElementById('root'))
+```
+编写<font color="red">TodoList.js</font>文件,这个文件可以用<font color="red">Simple React Snippets</font>快速生成。 先输入<font color="red">imrc</font>,再输入<font color="red">ccc</font>
+代码如下：
+```javascript
+import React, { Component } from 'react';
+class TodoList extends Component {
+    render() { 
+        return ( 
+            <div>Hello World</div>
+         );
+    }
+}
+export default TodoList;
+```
+做完这个，算是项目基本构建完成，可以打开浏览器看一下效果。接下来就可以安装<font color="red">Ant DesignUI</font>框架了。
+***安装<font color="red">Ant DesignUI</font>：***
+这里使用npm来进行安装，当然你有可以用yarn的方式进行安装.
+> npm install antd --save
+
+yarn的安装方式是:
+>yarn add antd
+
+如果你的网络情况不好，最好使用cnpm来进行安装。等待程序安装完以后，就可以进行使用了。这个我家里的网络安装起来非常耗时，所以就等待安装完成后，再下节课学习一下如何使用吧。
+
