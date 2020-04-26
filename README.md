@@ -96,7 +96,7 @@ yarn的安装方式是:
 
 > 已经完成了基本开发环境和AntDesign的安装。这节课用Ant Design制作一下TodoList的界面。本文不会对Ant Design深入讲解，只是为了让课程的界面好看一点，如果你对它有强烈的学习需要或愿望，可以看一下Ant Design官方文档,文档都是中文，没有什么难度。图片就是这节课最后要做出的样式。
 
-总结:这节课主要用Ant Design制作了todoList的界面，使用了<Input>，<Button>和<List>组件，因为这个课程是讲Redux的，所以这些组件的使用方法并没有展开讲，主要是制作一个UI界面，为以后的课程作铺垫。如果你对Ant Design非常感兴趣，你可以去官方网站阅读文档。
+总结:这节课主要用Ant Design制作了todoList的界面，使用了、、\<Input>，\<Button>和\<List>组件，因为这个课程是讲Redux的，所以这些组件的使用方法并没有展开讲，主要是制作一个UI界面，为以后的课程作铺垫。如果你对Ant Design非常感兴趣，你可以去官方网站阅读文档。
 
 # v6.0 创建Redux中的仓库-store和reducer:
 > 这节开始，算是正式进入了Redux的编码阶段，你也要集中注意力进行学习了。开始编码前，你应该再熟悉一下以前讲的redux的工作流程。所以我也把图片放到了文字下方，方便你的预习。 从图片中可以看出，Redux工作流程中有四个部分，最重要的就是store这个部分，因为它把所有的数据都放到了store中进行管理。在编写代码的时候，因为重要，所以要优先编写store。
@@ -108,3 +108,31 @@ yarn的安装方式是:
 安装好redux之后，在src目录下创建一个store文件夹,然后在文件夹下创建一个index.js文件。
 
 index.js就是整个项目的store文件，打开文件，编写代码，接下去请看store/index.js开始学习。
+
+# v7.0 Redux Dev Tools的安装:
+> 上节课已经制作了Redux中state仓库，也可以从仓库中取出数据了。接下来我们需要在控制台调试这些仓库里的数据，需要使用Redux DevTools。安装这个是需要科学上网的，所以你需要先找一个好梯子。
+
+***安装Redux DevTools:***
+
+我使用Chrome浏览器安装插件，在浏览器右上角有三个点，然后点击"更多工具",再点击"扩展程序"，再点击右侧的"打开Chrome网上商店",然后搜索Redux DevTools，可以看到下面这个插件，直接安装就可以了。
+安装完成后，你在控制台中就可以看到Redux标签了，有了这个标签也说明安装成功了。
+
+
+***配置Redux DevTools:***
+
+这也算是小伙伴经常问我的一个问题，就是如何配置这个<font color="red">Redux Dev Tools</font>插件，其实网站上已经说的非常清楚了，现在通过插件，打开这个网站。根据网站提示，我们把上节课的<font color="red">index.js</font>代码改为下面的样子。
+
+```javascript
+import { createStore } from 'redux' 
+import reducer from './reducer'    
+const store = createStore(reducer,
+window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) // 创建数据存储仓库
+export default store  
+```
+其实就是加了这样一句话:
+> window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+
+* 这句话的意思就是看window里有没有这个方法，有则执行这个方法（不要被大写的方法名吓到）。
+
+这步完成后，就可以启动项目测试一下了，你会发现State数据变的一目了然，以后再进行Redux调试，就会变的非常简单了。
