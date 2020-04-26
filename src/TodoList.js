@@ -67,5 +67,4 @@ class TodoList extends Component {
         store.dispatch(action)
     }
 }
-}
 export default TodoList;
