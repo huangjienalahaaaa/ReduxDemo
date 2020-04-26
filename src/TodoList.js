@@ -1,42 +1,36 @@
 import React, { Component } from 'react';
-//1.引入antd的css样式：
 import 'antd/dist/antd.css'
-//2.引入CSS样式之后，可以快乐的使用antd里的组件了。在使用的时候，你需要先引入Input,Button,List组件.然后如下面
 import { Input, Button, List } from 'antd'
 
-
-// 5.同样用Ant Desgin制作todoList的列表，在制作前，我们先在class外部声明一个data数组，数组内容可以随便写。
-const data = [
-    '早8点开晨会，分配今天的开发工作',
-    '早9点和项目经理作开发需求讨论会',
-    '晚5:30对今日代码进行review'
-]
+//1.引入store
+import store from './store/index'  //当然你也可以简写成这样:import store from './store'
 
 class TodoList extends Component {
     constructor(props) {
-        super(props);
-        this.state = {}
+        super(props)
+        // 2.引入store后可以试着在构造方法里打印到控制台一下，看看是否真正获得了数据，如果一切正常，是完全可以获取数据的。结果是->可以打印出来的
+        console.log(store.getState())
+        //3.这时候数据还不能在UI层让组件直接使用，我们可以直接复制给组件的state，代码如下:
+        this.state = store.getState();
     }
     render() {
         return (
             <div style={{ margin: '10px' }}>
                 <div>
-                    {/* 3.使用Input标签。在Input组件里，我们设置了style，注意设置这个时不带单引号或者双引号的。 */}
-                    <Input placeholder='write someting' style={{ width: '250px', marginRight: '10px' }} />
-                    {/* 4.Ant Design也提供了丰富好看的按钮组件，直接使用最简单的Primary按钮。使用按钮组件前也需要先引入,为了让组件更好看，还加入了一些Margin样式，代码如下: */}
+                    {/* 4.通过上面的步骤，我们从仓库里取出了数据，并用在组件的UI界面上 */}
+                    <Input placeholder={this.state.inputValue} style={{ width: '250px', marginRight: '10px' }} />
                     <Button type="primary">增加</Button>
                 </div>
-                {/* 6.使用List标签 */}
                 <div style={{ margin: '10px', width: '300px' }}>
                     <List
-                        bordered //表示需要外边框
-                        dataSource={data} //数据绑定
-                        renderItem={item => (<List.Item>{item}</List.Item>)} //渲染项
+                        bordered
+                        // 4.通过上面的步骤，我们从仓库里取出了数据，并用在组件的UI界面上
+                        dataSource={this.state.list}
+                        renderItem={item => (<List.Item>{item}</List.Item>)}
                     />
                 </div>
             </div>
         );
     }
 }
-
 export default TodoList;
