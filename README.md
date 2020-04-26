@@ -139,4 +139,5 @@ export default store
 
 # v8.0 通过Input体验Redux的流程:
 > 这节课要作的就是通过Input的改变，体验一下Redux的整体流程，是如何编写代码的。我们要实现的是在TodoList的Demo中,只要文本框中的值改变就redux中store的值就跟着改变，并且随着Redux中的state值改变，组件也跟着改变。整个流程就是以前讲过的这个图，
-
+# v9.0 Redux制作TodoList列表：
+> 通过上节课的知识，我们用同样的方法和流程，再开发一遍toDoList里边的列表功能，具体来说就是当点击添加按钮时，ToDoList组件的列表会增加。知识其实我们都已经会了，缺少的是熟练度。
