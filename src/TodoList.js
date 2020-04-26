@@ -12,8 +12,9 @@ class TodoList extends Component {
         this.changeInputValue = this.changeInputValue.bind(this)
         this.storeChange = this.storeChange.bind(this)
         store.subscribe(this.storeChange)
-        //this.绑定
         this.clickBtn = this.clickBtn.bind(this)
+        // 2.this指向
+        this.deleteItem = this.deleteItem.bind(this)
     }
     render() {
         return (
@@ -26,17 +27,17 @@ class TodoList extends Component {
                         onChange={this.changeInputValue}
                         value={this.state.inputValue}
                     />
-                    {/* 1.先来编写按钮点击后的响应事件,在按钮的地方加入onClick事件，记得要进行绑定哦 */}
                     <Button
                         type="primary"
                         onClick={this.clickBtn}
                     >增加</Button>
                 </div>
                 <div style={{ margin: '10px', width: '300px' }}>
+                    {/* 1.写onclick绑定事件 */}
                     <List
                         bordered
                         dataSource={this.state.list}
-                        renderItem={item => (<List.Item>{item}</List.Item>)}
+                        renderItem={(item, index) => (<List.Item onClick={this.deleteItem.bind(this, index)}>{item}</List.Item>)}
                     />
                 </div>
             </div>
@@ -53,11 +54,18 @@ class TodoList extends Component {
     storeChange() {
         this.setState(store.getState())
     }
-    // 2.在clickBtn方法里增加Action，然后用dispatch()方法传递给store
-    // 3.这时候已经把action传递给了store，然后去Reducer里编写业务逻辑就可以了。
     clickBtn() {
         const action = { type: 'addItem' }
         store.dispatch(action)
     }
+    deleteItem(index) {
+        //3.编写action,并且传给store
+        const action = {
+            type: 'deleteItem',
+            index
+        }
+        store.dispatch(action)
+    }
+}
 }
 export default TodoList;

@@ -12,14 +12,17 @@ export default (state = defaultState, action) => {
         newState.inputValue = action.value
         return newState
     }
-    //关键代码------------------start----------
-    //state值只能传递，不能使用
-    if (action.type === 'addItem') { //根据type值，编写业务逻辑
+    if (action.type === 'addItem') {
         let newState = JSON.parse(JSON.stringify(state))
-        newState.list.push(newState.inputValue)  //push新的内容到列表中去
+        newState.list.push(newState.inputValue)
         newState.inputValue = ''
         return newState
     }
-    //关键代码------------------end----------
+    // 删除功能
+    if (action.type === 'deleteItem') {
+        let newState = JSON.parse(JSON.stringify(state))
+        newState.list.splice(action.index, 1)  //删除数组中对应的值
+        return newState
+    }
     return state
 }
