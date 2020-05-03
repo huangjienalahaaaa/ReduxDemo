@@ -3,7 +3,8 @@ import 'antd/dist/antd.css'
 import { Input, Button, List } from 'antd'
 import store from './store'
 import { CHANGE_INPUT, ADD_ITEM, DELETE_ITEM, GET_LIST } from './store/actionTypes'
-import { changeInputAction, addItemAction, deleteItemAction, getListAction } from './store/actionCreatores'
+//1. 先引入getTodoList
+import { getTodoList, changeInputAction, addItemAction, deleteItemAction, getListAction } from './store/actionCreatores'
 import TodoListUI from './TodoListUI'
 import axios from 'axios'
 
@@ -30,10 +31,17 @@ class TodoList extends Component {
         );
     }
     componentDidMount() {
-        axios.get('https://www.easy-mock.com/mock/5cfcce489dc7c36bd6da2c99/xiaojiejie/getList').then((res) => {
-            const data = res.data
-            const action = getListAction(data)
-        })
+        // 2. 在react-thunk中使用异步：
+
+        // axios.get('https://www.easy-mock.com/mock/5cfcce489dc7c36bd6da2c99/xiaojiejie/getList').then((res) => {
+        //     const data = res.data
+        //     const action = getListAction(data)
+        // })
+
+        const action = getTodoList()
+        store.dispatch(action)
+        // 3. 写完之后，继续回到actionCreatores.js文件中
+
     }
     changeInputValue(e) {
         const action = changeInputAction(e.target.value)
