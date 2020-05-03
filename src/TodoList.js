@@ -26,7 +26,7 @@ class TodoList extends Component {
 }
 
 
-//3.开始写关系映射关系
+//3.开始写关系映射关系（将state映射成props）
 const stateToProps = (state) => {
     return {
         inputValue: state.inputValue
