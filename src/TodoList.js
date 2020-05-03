@@ -4,7 +4,8 @@ import { Input, Button, List } from 'antd'
 import store from './store'
 import { CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './store/actionTypes'
 import { changeInputAction, addItemAction, deleteItemAction } from './store/actionCreatores'
-
+// 引入TodoListUI.js
+import TodoListUI from './TodoListUI'
 
 class TodoList extends Component {
     constructor(props) {
@@ -18,28 +19,15 @@ class TodoList extends Component {
     }
     render() {
         return (
-            <div style={{ margin: '10px' }}>
-                <div>
-
-                    <Input
-                        placeholder={this.state.inputValue}
-                        style={{ width: '250px', marginRight: '10px' }}
-                        onChange={this.changeInputValue}
-                        value={this.state.inputValue}
-                    />
-                    <Button
-                        type="primary"
-                        onClick={this.clickBtn}
-                    >增加</Button>
-                </div>
-                <div style={{ margin: '10px', width: '300px' }}>
-                    <List
-                        bordered
-                        dataSource={this.state.list}
-                        renderItem={(item, index) => (<List.Item onClick={this.deleteItem.bind(this, index)}>{item}</List.Item>)}
-                    />
-                </div>
-            </div>
+            // 写入ui组件，通过属性传值的形式，把需要的值传递给子组件，子组件接收这些值，进行相应的绑定就可以了
+            // <TodoListUI />
+            <TodoListUI
+                inputValue={this.state.inputValue}
+                list={this.state.list}
+                changeInputValue={this.changeInputValue}
+                clickBtn={this.clickBtn}
+                deleteItem={this.deleteItem}
+            />
         );
     }
 
