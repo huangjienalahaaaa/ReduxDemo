@@ -4,7 +4,6 @@ import { Input, Button, List } from 'antd'
 import store from './store'
 import { CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './store/actionTypes'
 import { changeInputAction, addItemAction, deleteItemAction } from './store/actionCreatores'
-// 引入TodoListUI.js
 import TodoListUI from './TodoListUI'
 
 class TodoList extends Component {
@@ -19,8 +18,6 @@ class TodoList extends Component {
     }
     render() {
         return (
-            // 写入ui组件，通过属性传值的形式，把需要的值传递给子组件，子组件接收这些值，进行相应的绑定就可以了
-            // <TodoListUI />
             <TodoListUI
                 inputValue={this.state.inputValue}
                 list={this.state.list}

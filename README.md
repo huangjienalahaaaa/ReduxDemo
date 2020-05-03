@@ -184,3 +184,47 @@ export default store
 
 
 新建src/TodoListUI.js文件
+
+# v14.0 填坑和Redux中的无状态组件：
+
+>上节课程序写完，有一个小错误，当时我并没注意到，还是VIP群里的小伙伴告诉我的，无意中给大家留了一个坑，跟大家说对不起了。这节课我们先解决这个遗留问题，再讲一下无状态组件：
+
+无状态组件其实就是一个函数，它不用再继承任何的类（class），当然如名字所一样，也不存在state（状态）。因为无状态组件其实就是一个函数（方法）,所以它的性能也比普通的React组件要好。
+
+***1. 填坑：***
+> 上节课写完UI和业务分离后，在删除TodoList的项目时，是有一个错误的，这个错误属于业务逻辑错误，并不是语法错误。就是在删除item时，正序删除是没有问题的，但是倒叙删除是有问题的。 主要是我们的index出现了重新声明的问题。
+
+原来的错误代码是这样的：
+```javascript
+<List
+    bordered
+    dataSource={this.props.list}
+    renderItem={(item,index)=>(<List.Item onClick={(index)=>{this.props.deleteItem(index)}}>{item}</List.Item>)}
+/>   
+```
+只要改成下面这样就正确了。
+```javascript
+ <List
+    bordered
+    dataSource={this.props.list}
+    renderItem={
+        (item,index)=>(
+            <List.Item onClick={()=>{this.props.deleteItem(index)}}>
+                {item}
+            </List.Item>
+        )
+    }
+/>    
+```
+
+***2. 无状态组件的改写：***
+
+把UI组件改成无状态组件可以提高程序性能，具体来看一下如何编写。
+
+1. 首先我们不在需要引入React中的{ Component }，删除就好。
+2. 然后些一个TodoListUI函数,里边只返回JSX的部分就好，这步可以复制。
+3. 函数传递一个props参数，之后修改里边的所有props，去掉this
+
+这里给出最后修改好以后的无状态组件代码，这样的效率要高于以前写的普通react组件。
+
+看TodoListUI.js这个文件（这个文件只有UI，没有页面逻辑这些，改成无状态组件的形式是最好的了）
