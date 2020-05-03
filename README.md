@@ -319,3 +319,38 @@ Redux-thunk并不在Redux基础组件中，也就是说需要进行新安装。�
 > npm install --save react-redux
 
 注意：react-redux是在redux的基础上使用的，所以项目中必须要先有redux
+
+
+
+# v21.0 React-redux中的Provider和connect：
+> 这节课主要学习一下Provider和connect这两个知识点
+
+***1.\<Provider\>提供器讲解： ***
+> <Provider>是一个提供器，只要使用了这个组件，组件里边的其它所有组件都可以使用store了，这也是React-redux的核心组件了。
+
+
+有了<Provider>就可以把/src/index.js改写。
+
+***2. \<connect\>=连接器的使用： ***
+
+现在如何简单的获取store中数据那？先打开TodoList.js文件，引入connect，它是一个连接器（其实它就是一个方法），有了这个连接器就可以很容易的获得数据了。
+
+
+
+***3. 映射关系的制作： ***
+映射关系就是把原来的state映射成组件中的props属性，比如我们想映射inputValue就可以写成如下代码。
+```javascript
+const stateToProps = (state)=>{
+    return {
+        inputValue : state.inputValue
+    }
+}
+```
+这时候再把xxx改为stateToProps
+```javascript
+export default connect(stateToProps,null)(TodoList)
+```
+然后把<input>里的state标签，改为props,代码如下:
+```javascript
+ <input value={this.props.inputValue} />
+```
