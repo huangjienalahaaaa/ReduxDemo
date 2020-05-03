@@ -304,3 +304,6 @@ Redux-thunk并不在Redux基础组件中，也就是说需要进行新安装。�
 
 # v19.0 Redux-saga获取TodoList列表：
 > 上节课已经完成了redux-saga的安装和基本配置，这篇文章就用Redux-saga来完成TodoList的列表获取。其实redxu-saga是比redux-thunk要复杂的，它多出了很多API需要学习，至少是学习成本增加了。但是有的人说saga更适合于大型项目，本人不予表态，也不想引战，如果你的公司用了saga，这两篇文章足可以让你入门了。话不多说，我们继续学习。
+
+
+我们先来改造TodoList.js文件
