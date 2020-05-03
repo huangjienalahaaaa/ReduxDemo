@@ -228,3 +228,53 @@ export default store
 这里给出最后修改好以后的无状态组件代码，这样的效率要高于以前写的普通react组件。
 
 看TodoListUI.js这个文件（这个文件只有UI，没有页面逻辑这些，改成无状态组件的形式是最好的了）
+
+# v15.0 Axios异步获取数据并和redux合并：
+> 这节课是最近几天小伙伴问我比较多的问题，就是从后端接口获取了数据，如何可以放到Redux的store中，很多小伙伴被这个困难卡住了。这节课就来学习一下如何从后台取得数据，并和Redux结合，实现想要的业务逻辑。比如以前我们的列表数据是在Reducer里写死的，这节课使用Axios从后台获取数据。
+
+***1. 利用easy-mock创建模拟数据:***
+这个在基础课程中已经讲过了，我就不作过多的介绍了，如果你还不会，就直接看基础课程吧，反复讲也没什么意思。如果你说我也懒得新建一个，你也可以使用我的模拟数据，我在这里给出地址。
+> 地址：https://www.easy-mock.com/mock/5cfcce489dc7c36bd6da2c99/xiaojiejie/getList
+
+JSON的基本格式，如果上面的接口不管用了，你可以用Easy mock自己作一个这样的接口:
+```javascript
+{
+  "data": {
+    "list": [
+      '早上4点起床，锻炼身体',
+      '中午下班游泳一小时',
+      '晚上8点到10点，学习两个小时'
+    ]
+  }
+}
+```
+***2. 安装并使用axios:***
+因为在Redux的学习中，我们使用了新的项目和目录，所以要重新安装Axios插件（以前安装的不能再使用了）。直接使用npm进行安装。
+> npm install --save axios
+
+安装完成后，就可以在TodoList.js中，引入并进行使用了。
+> import axios from 'axios'
+
+引入后，在组件的声明周期函数里componentDidMount获取远程接口数据。
+```javascript
+componentDidMount(){
+    axios.get('https://www.easy-mock.com/mock/5cfcce489dc7c36bd6da2c99/xiaojiejie/getList').then((res)=>{
+        console.log(res)
+    })
+}
+```
+做完这一步骤后，可以在浏览器中打开，预览下是否控制台(console)获取数据，如果可以获取，说明完全正常。
+***3. 获取数据后跟Redux相结合（重点）***
+
+# v16.0 Redux-thunk中间件的安装和配置：
+
+通过学习，你已经对Redux的基本流程有了全面的了解，也许你已经在项目中开始使用。其实咱们一起学完了大部分的Redux知识，但是我还是决定继续讲解一下Redux-thunk这个Redux最常用的插件。
+> 什么时候会用到这个插件那？比如在Dispatch一个Action之后，到达reducer之前，进行一些额外的操作，就需要用到middleware（中间件）。在实际工作中你可以使用中间件来进行日志记录、创建崩溃报告，调用异步接口或者路由。 这个中间件可以使用是Redux-thunk来进行增强(当然你也可以使用其它的)，它就是对Redux中dispatch的加强，这节课我们先来学习一下安装和配置（特别是配置的使用很多小伙伴都配置不成功）。
+
+***1. 安装redux-thunk组件：***
+Redux-thunk并不在Redux基础组件中，也就是说需要进行新安装。安装使用npm就可以了。
+> npm install --save redux-thunk
+
+***2. 配置redux-thunk组件：***
+
+> 安装作起来很容易，但是配置就要稍微注意一下了，这里边还是有几个小坑的，如果你完全按照官方文档是配置不成功的。 需要在创建store的地方引入redux-thunk，对于我们的目录来说，就是/store/index.js文件。
