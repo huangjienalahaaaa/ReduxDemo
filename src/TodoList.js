@@ -1,36 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
 
-class TodoList extends Component {
-    constructor(props) {
-        super(props)
-    }
-    render() {
-        return (
-            <div>
-                <div>
-                    <input value={this.props.inputValue} onChange={this.props.inputChange} />
-                    {/* 给Button增加一个onClick事件 */}
-                    <button onClick={this.props.clickButton}>提交</button>
-                </div>
-                <ul>
-                    {
 
-                        // 点击按钮后传递回来的数据循环出来
-                        this.props.list.map((item, index) => {
-                            return (<li key={index}>{item}</li>)
-                        })
-                    }
-                </ul>
+const TodoList = (props) => {
+    let { inputValue, inputChange, clickButton, list } = props; // 粘贴过来后，此处要进行修改
+    return (
+        <div>
+            <div>
+                <input value={inputValue} onChange={inputChange} />
+                <button onClick={clickButton}>提交</button>
             </div>
-        );
-    }
+            <ul>
+                {
+                    list.map((item, index) => {
+                        return (<li key={index}>{item}</li>)
+                    })
+                }
+            </ul>
+        </div>
+    );
 }
+
+
 
 const stateToProps = (state) => {
     return {
         inputValue: state.inputValue,
-        // 点击按钮后传递回来的数据接收好
         list: state.list
     }
 }
@@ -45,10 +40,17 @@ const dispatchToProps = (dispatch) => {
             dispatch(action)
         },
         clickButton() {
-            // dispatch派发action
-            let action = { type: 'add_item' }
+            let action = {
+                type: 'add_item'
+            }
             dispatch(action)
         }
     }
 }
 export default connect(stateToProps, dispatchToProps)(TodoList);
+/*
+那我们反过来，再来理解一下最后一句话代码的意思:
+export default connect(stateToProps,dispatchToProps)(TodoList);
+
+-> connect的作用是把UI组件（无状态组件）和业务逻辑代码的分开，然后通过connect再链接到一起，让代码更加清晰和易于维护。这也是React-Redux最大的有点。
+*/

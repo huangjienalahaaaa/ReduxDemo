@@ -367,3 +367,56 @@ export default connect(stateToProps,null)(TodoList)
 # v23.0 React-redux增加List数据：
 
 这节课主要学习一下如何用React-Redux增加列表数据，如果你上节课的流程练习熟练了，这节课就不是很难了。这节课要实现的效果，就是点击提交按钮时，可以在列表中进行增加。
+
+# v24.0 React-redux代码优化：
+
+***1. 用结构复制精简代码：***
+现在代码中有好几处this.props都是重复的，这时候就可以用javascript的解构赋值方法，来精简代码。
+
+如修改TodoList.js中的Render函数，把原来带代码修改为下面的代码:
+```javascript
+    render() { 
+        let {inputValue ,inputChange,clickButton,list} = this.props;
+        return (
+            <div>
+                <div>
+                    <input value={inputValue} onChange={inputChange} />
+                    <button onClick={clickButton}>提交</button>
+                </div>
+                <ul>
+                    {
+                        list.map((item,index)=>{
+                            return (<li key={index}>{item}</li>)
+                        })
+                    }
+                </ul>
+            </div>
+        );
+    }
+```
+
+***2. 把TodoList改为ui组件-提高性能：***
+
+可以看到，现在的TodoList组件里没有任何的业务逻辑，只有一个Render方法，这时候就可以把它改为UI组件(无状态组件)，UI组件就是一个方法，减少很多冗余操作，从而提高程序运行性能。这时候重新声明一个TodoList的变量，然后把render函数里的东西复制过来，只要稍加修改，就可以得到下面的代码：
+
+
+```javascript
+const TodoList =(props)=>{
+    let {inputValue ,inputChange,clickButton,list} = props; // 粘贴过来后，此处要进行修改
+    return (
+        <div>
+            <div>
+                <input value={inputValue} onChange={inputChange} />
+                <button onClick={clickButton}>提交</button>
+            </div>
+            <ul>
+                {
+                    list.map((item,index)=>{
+                        return (<li key={index}>{item}</li>)
+                    })
+                }
+            </ul>
+        </div>
+    );
+}
+```
