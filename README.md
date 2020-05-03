@@ -156,3 +156,26 @@ export default store
 在/src/store文件夹下面，建立一个心的文件actionCreators.js.
 
 # v12.0 Redux中常遇的三个小坑：
+>到这里Redux基础部分也就快结束了，但是我有必要再拿出一节课，把平时你容易犯的错误总结一下。这节课的知识点你可能都已经知道，也可以省略不看。我总结了三个React新手最容易范的错误。
+
+* store必须是唯一的，多个store是坚决不允许，只能有一个store空间
+* 只有store能改变自己的内容，Reducer不能改变
+* Reducer必须是纯函数
+
+    * 先来看什么是纯函数，纯函数定义：
+    > 如果函数的调用参数相同，则永远返回相同的结果。它不依赖于程序执行期间函数外部任何状态或数据的变化，必须只依赖于其输入参数
+    
+    所以如下：
+    ```javascript
+    export default (state = defaultState,action)=>{
+    if(action.type === CHANGE_INPUT){
+        let newState = JSON.parse(JSON.stringify(state)) 
+        newState.inputValue = action.value  
+
+        <!-- 如果上面的这句改成  newState.inputValue = new Date()，这样就报错了，因为它就不是一个纯函数了（纯函数必须有传递进来的参数来决定的，而这里的new Date()每个时间的值都不一样，所以不是纯函数） -->
+
+        return newState
+    }
+     return state
+    }
+    ```
