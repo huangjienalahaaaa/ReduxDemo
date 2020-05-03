@@ -283,3 +283,5 @@ Redux-thunk并不在Redux基础组件中，也就是说需要进行新安装。�
 这节课我们把向后台请求数据的程序放到中间件中，这样就形成了一套完整的Redux流程，所有逻辑都是在Redux的内部完成的，这样看起来更完美，而且这样作自动化测试也会变动简单很多，所以工作中你还是要尽量按照这种写法来写。现在就开始学习吧。
 
 看actionCreatores.js文件！为什么？（图标为以前actionCreators.js都是定义好的action，根本没办法写业务逻辑，有了Redux-thunk之后，可以把TodoList.js中的componentDidMount业务逻辑放到这里来编写（即：Redux-thunk生成的也是action。只是以前action返回的是一个{}对象，而现在我们有了Redux-thunk的机制，我们可以返回一个方法，也就是说它归根结底还是一个action，所以我们将代码放在actionCreatores.js文件中）。也就是把向后台请求数据的代码放到actionCreators.js文件里。）
+
+# v18.0 Redux-saga的安装和配置：
