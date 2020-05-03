@@ -363,3 +363,7 @@ export default connect(stateToProps,null)(TodoList)
 据我所知，几乎所有公司用react都会用到react-redux，所以这个流程重要性不次于Redux的流程，一定要熟练掌握。
 
 打开TodoList.js文件
+
+# v23.0 React-redux增加List数据：
+
+这节课主要学习一下如何用React-Redux增加列表数据，如果你上节课的流程练习熟练了，这节课就不是很难了。这节课要实现的效果，就是点击提交按钮时，可以在列表中进行增加。

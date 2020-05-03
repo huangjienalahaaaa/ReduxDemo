@@ -3,10 +3,16 @@ const defalutState = {
     list: []
 }
 export default (state = defalutState, action) => {
-    //写对应的业务逻辑
     if (action.type === 'change_input') {
         let newState = JSON.parse(JSON.stringify(state))
         newState.inputValue = action.value
+        return newState
+    }
+    // 写业务代码
+    if (action.type === 'add_item') {
+        let newState = JSON.parse(JSON.stringify(state))
+        newState.list.push(newState.inputValue)
+        newState.inputValue = ''
         return newState
     }
     return state
