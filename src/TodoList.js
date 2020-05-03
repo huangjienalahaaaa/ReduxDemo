@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css'
 import { Input, Button, List } from 'antd'
 import store from './store'
-
-
+import { CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './store/actionTypes'
 
 class TodoList extends Component {
     constructor(props) {
@@ -13,7 +12,6 @@ class TodoList extends Component {
         this.storeChange = this.storeChange.bind(this)
         store.subscribe(this.storeChange)
         this.clickBtn = this.clickBtn.bind(this)
-        // 2.this指向
         this.deleteItem = this.deleteItem.bind(this)
     }
     render() {
@@ -33,7 +31,6 @@ class TodoList extends Component {
                     >增加</Button>
                 </div>
                 <div style={{ margin: '10px', width: '300px' }}>
-                    {/* 1.写onclick绑定事件 */}
                     <List
                         bordered
                         dataSource={this.state.list}
@@ -46,7 +43,7 @@ class TodoList extends Component {
 
     changeInputValue(e) {
         const action = {
-            type: 'change_input_value',
+            type: CHANGE_INPUT,
             value: e.target.value
         }
         store.dispatch(action)
@@ -55,13 +52,12 @@ class TodoList extends Component {
         this.setState(store.getState())
     }
     clickBtn() {
-        const action = { type: 'addItem' }
+        const action = { type: ADD_ITEM }
         store.dispatch(action)
     }
     deleteItem(index) {
-        //3.编写action,并且传给store
         const action = {
-            type: 'deleteItem',
+            type: DELETE_ITEM,
             index
         }
         store.dispatch(action)
