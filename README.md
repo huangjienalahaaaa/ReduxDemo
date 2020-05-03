@@ -154,3 +154,5 @@ export default store
 >  目前ToDoList组件里有很多Action，并且分散才程序的各个地方，如果庞大的工程，这势必会造成严重的混乱，那这节课就把所有的Redux Action放到一个文件里进行管理。
 
 在/src/store文件夹下面，建立一个心的文件actionCreators.js.
+
+# v12.0 Redux中常遇的三个小坑：
