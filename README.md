@@ -360,4 +360,6 @@ export default connect(stateToProps,null)(TodoList)
 
 上节课已经可以用React-redux顺利的拿到Store中数据了。这节课学习如何改变Store中的数据。也就是当我们修改<input>中的值时，去改变store数据，UI界面也随之进行改变。
 
+据我所知，几乎所有公司用react都会用到react-redux，所以这个流程重要性不次于Redux的流程，一定要熟练掌握。
+
 打开TodoList.js文件
