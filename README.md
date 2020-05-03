@@ -354,3 +354,10 @@ export default connect(stateToProps,null)(TodoList)
 ```javascript
  <input value={this.props.inputValue} />
 ```
+
+
+# v22.0 React-redux的数据修改：
+
+上节课已经可以用React-redux顺利的拿到Store中数据了。这节课学习如何改变Store中的数据。也就是当我们修改<input>中的值时，去改变store数据，UI界面也随之进行改变。
+
+打开TodoList.js文件
