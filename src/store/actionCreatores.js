@@ -1,4 +1,4 @@
-import { CHANGE_INPUT } from './actionTypes'
+import { CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './actionTypes'
 export const changeInputAction = (value) => ({
     type: CHANGE_INPUT,
     value
