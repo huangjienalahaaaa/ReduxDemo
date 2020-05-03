@@ -148,3 +148,9 @@ export default store
 > 上面的ToDoList Demo如果已经能熟练掌握了，说明你Redux已经入门了，可以先奖励自己一下了。但是你可能是一个已经走上工作岗位的老手，那你这样写Redux就稍微有点lowe了，你需要作合理的分离让层次更清晰。这节课和下节课我们来讲两个Redux实际开发中的小技巧
 
 新建stroe/actionType.js文件，接下来请去那个文件中学习去！
+
+# v11.0 工作中写Redux的小技巧-2：
+
+>  目前ToDoList组件里有很多Action，并且分散才程序的各个地方，如果庞大的工程，这势必会造成严重的混乱，那这节课就把所有的Redux Action放到一个文件里进行管理。
+
+在/src/store文件夹下面，建立一个心的文件actionCreators.js.

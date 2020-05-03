@@ -4,6 +4,10 @@ import { Input, Button, List } from 'antd'
 import store from './store'
 import { CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './store/actionTypes'
 
+//引入actionCreatores.js
+import { changeInputAction, addItemAction, deleteItemAction } from './store/actionCreatores'
+
+
 class TodoList extends Component {
     constructor(props) {
         super(props)
@@ -42,24 +46,31 @@ class TodoList extends Component {
     }
 
     changeInputValue(e) {
-        const action = {
-            type: CHANGE_INPUT,
-            value: e.target.value
-        }
+        // 引入后，可以把changeInputValue()方法，修改为下面的样子.然后对照这个方法修改另外2个方法
+        // const action = {
+        //     type: CHANGE_INPUT,
+        //     value: e.target.value
+        // }
+        // store.dispatch(action)
+        const action = changeInputAction(e.target.value)
         store.dispatch(action)
     }
     storeChange() {
         this.setState(store.getState())
     }
     clickBtn() {
-        const action = { type: ADD_ITEM }
+        // const action = { type: ADD_ITEM }
+        // store.dispatch(action)
+        const action = addItemAction()
         store.dispatch(action)
     }
     deleteItem(index) {
-        const action = {
-            type: DELETE_ITEM,
-            index
-        }
+        // const action = {
+        //     type: DELETE_ITEM,
+        //     index
+        // }
+        // store.dispatch(action)
+        const action = deleteItemAction(index)
         store.dispatch(action)
     }
 }
